@@ -16,7 +16,7 @@ local function PushPullRadius(pos, pusher)
          local dir = (tpos - pos):GetNormal()
          local phys = target:GetPhysicsObject()
 
-         if target:IsPlayer() and (not target:IsFrozen()) and ((not target.was_pushed) or target.was_pushed.t != CurTime()) then
+         if target:IsPlayer() and !target:IsFrozen() and (!target.was_pushed or target.was_pushed.t != CurTime()) then
 
             -- always need an upwards push to prevent the ground's friction from
             -- stopping nearly all movement
@@ -30,7 +30,7 @@ local function PushPullRadius(pos, pusher)
 
             target:SetVelocity(vel)
 
-            target.was_pushed = {att=pusher, t=CurTime(), wep="weapon_ttt_confgrenade"}
+            target.was_pushed = {att = pusher, t = CurTime(), wep = "weapon_ttt_confgrenade"}
 
          elseif IsValid(phys) then
             phys:ApplyForceCenter(dir * -1 * phys_force)
@@ -50,7 +50,6 @@ local function PushPullRadius(pos, pusher)
    end
 end
 
-local zapsound = Sound("npc/assassin/ball_zap1.wav")
 function ENT:Explode(tr)
    if SERVER then
       self:SetNoDraw(true)
@@ -76,13 +75,9 @@ function ENT:Explode(tr)
          effect:SetNormal(tr.HitNormal)
       end
       
-      --util.Effect("Explosion", effect, true, true)
-      --util.Effect("cball_explode", effect, true, true)
-
-      --sound.Play(zapsound, pos, 100, 100)
    else
       local spos = self:GetPos()
-      local trs = util.TraceLine({start=spos + Vector(0,0,64), endpos=spos + Vector(0,0,-128), filter=self})
+      local trs = util.TraceLine({start = spos + Vector(0, 0, 64), endpos = spos + Vector(0, 0, -128), filter = self})
       util.Decal("SmallScorch", trs.HitPos + trs.HitNormal, trs.HitPos - trs.HitNormal)      
 
       self:SetDetonateExact(0)
