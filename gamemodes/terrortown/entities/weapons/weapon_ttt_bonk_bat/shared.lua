@@ -136,11 +136,11 @@ function SWEP:PrimaryAttack()
   -- making the jail
   timer.Create("jaildiscombob", 0.7, 1, function()
     -- far side
-    jail[0] = JailWall(ent:GetPos() + Vector(0, 25, -50), Angle(0, 275 ,0))
+    jail[0] = JailWall(ent:GetPos() + Vector(0, -25, 50), Angle(0, 275 ,0))
     -- close side
     jail[1] = JailWall(ent:GetPos() + Vector(0, 25, 50), Angle(0, 275 ,0))
     -- left side
-    jail[2] = JailWall(ent:GetPos() + Vector(25, 0, -50), Angle(0, 180, 0))
+    jail[2] = JailWall(ent:GetPos() + Vector(-25, 0, 50), Angle(0, 180, 0))
     -- right side
     jail[3] = JailWall(ent:GetPos() + Vector(25, 0, 50), Angle(0, 180, 0))
     for _,v in pairs(player.GetAll()) do
