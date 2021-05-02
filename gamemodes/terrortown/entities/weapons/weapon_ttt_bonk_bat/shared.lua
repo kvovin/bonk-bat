@@ -43,8 +43,8 @@ SWEP.HoldType = "melee"
 
 SWEP.Primary.Damage = 10
 SWEP.Primary.Delay = 0.5
-SWEP.Primary.ClipSize = 3
-SWEP.Primary.DefaultClip = 3
+SWEP.Primary.ClipSize = 6
+SWEP.Primary.DefaultClip = 6
 SWEP.Primary.Automatic = true
 SWEP.Primary.Ammo = "none"
 
@@ -118,6 +118,8 @@ function SWEP:PrimaryAttack()
   dmg:SetDamagePosition(ply:GetPos())
   dmg:SetDamageType(DMG_CLUB)
   ent:DispatchTraceAttack(dmg, tr)
+
+  self:TakePrimaryAmmo(1)
 
   if self:Clip1() <= 0 then
     timer.Simple(0.49,function() if IsValid(self) then self:Remove() RunConsoleCommand("lastinv") end end)
