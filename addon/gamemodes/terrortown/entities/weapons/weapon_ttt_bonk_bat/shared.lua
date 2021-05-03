@@ -1,7 +1,7 @@
 if SERVER then
   AddCSLuaFile()
   util.AddNetworkString("Bonk Bat Primary Hit")
-  resource.AddWorkshop("2475989756)
+  resource.AddWorkshop("2475989756")
 else
   SWEP.PrintName = "Bonk Bat"
   SWEP.Author = "ajwuk2"
