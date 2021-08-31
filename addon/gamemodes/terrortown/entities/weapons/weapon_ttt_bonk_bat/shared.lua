@@ -146,6 +146,8 @@ function SWEP:PrimaryAttack()
     jail[2] = JailWall(ent:GetPos() + Vector(-25, 0, 50), Angle(0, 180, 0))
     -- right side
     jail[3] = JailWall(ent:GetPos() + Vector(25, 0, 50), Angle(0, 180, 0))
+    -- ceiling side
+    jail[4] = JailWall(ent:GetPos() + Vector(0, 0, 100), Angle(90, 0, 0))
     for _,v in pairs(player.GetAll()) do
       v:ChatPrint(name .. " has been sent to horny jail!")
     end
